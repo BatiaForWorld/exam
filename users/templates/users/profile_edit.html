@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block title %}Редактирование профиля{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h2>Редактирование профиля</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-3">{{ form.first_name.label_tag }} {{ form.first_name }}</div>
+        <div class="mb-3">{{ form.email.label_tag }} {{ form.email }}</div>
+        <div class="mb-3">{{ form.phone.label_tag }} {{ form.phone }}</div>
+        <div class="mb-3">{{ form.country.label_tag }} {{ form.country }}</div>
+        <div class="mb-3">{{ form.avatar.label_tag }} {{ form.avatar }}</div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="{% url 'users:profile' %}" class="btn btn-secondary">Отменить</a>
+    </form>
+</div>
+{% endblock %}

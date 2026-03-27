@@ -1,0 +1,111 @@
+{% extends 'blog/base.html' %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    {% if user.avatar %}
+                    <img src="{{ user.avatar.url }}"
+                         alt="Аватар"
+                         width="180"
+                         height="180"
+                         class="rounded-circle me-2"/>
+                    {% elif user.avatar_mobile %}
+                    <img src="{{ user.avatar_mobile.url }}"
+                         alt="Автар"
+                         width="120"
+                         height="120"
+                         class="rounded-circle me-2"/>
+                    {% else %}
+                    <img src="https://avatars.mds.yandex.net/i?id=ff9a158845fc70cc888f57b0f0daddae_l-5248605-images-thumbs&n=13"
+                         alt="Аватар"
+                         width="120"
+                         height="120"
+                         class="rounded-circle me-2"/>
+                    {% endif %}
+                    <h2>{{ user.get_full_name|default:user.email }}</h2>
+                    <p class="text-muted">{{ user.email }}</p>
+                    <p class="text-muted">{{ user.phone|default:'Телефон не указан' }}</p>
+                    <p class="text-muted">{{ user.country|default:'Страна не указана' }}</p>
+                    <div class="mt-3 d-flex flex-column gap-2">
+                        <a href="{% url 'users:profile_edit' %}" class="btn btn-sm btn-primary">Редактировать профиль</a>
+                        <a href="{% url 'users:avatar_change' %}" class="btn btn-sm btn-outline-secondary">Сменить аватар</a>
+                        <a href="{% url 'users:password_change' %}" class="btn btn-sm btn-outline-warning">Сменить пароль</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Статистика</div>
+                <div class="card-body">
+                    <p>Всего записей: <strong>{{ posts_total }}</strong></p>
+                    <p>Опубликовано: <strong>{{ posts_published }}</strong></p>
+                    <p>Черновиков: <strong>{{ posts_draft }}</strong></p>
+                    <p>На модерации: <strong>{{ posts_on_review }}</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            {% if perms.blog.can_approve_blog or user.is_superuser %}
+            <h3>Статьи на модерации</h3>
+            {% if moderation_posts %}
+            <ul class="list-group mb-4">
+                {% for post in moderation_posts %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'blog:blog_detail' post.pk %}">{{ post.title }}</a>
+                    <div>
+                        <form method="post" action="{% url 'blog:blog_toggle_publish' post.pk %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-success">Опубликовать</button>
+                        </form>
+                        <form method="post" action="{% url 'blog:blog_reject' post.pk %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-danger">Отклонить</button>
+                        </form>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-muted">Нет статей на модерации.</p>
+            {% endif %}
+            {% endif %}
+
+            <h3>Мои записи</h3>
+            <div class="mb-3">
+                <a class="btn btn-outline-primary btn-sm {% if status == "all" %}active{% endif %}" href="?status=all">Все</a>
+                <a class="btn btn-outline-primary btn-sm {% if status == "published" %}active{% endif %}" href="?status=published">Опубликованные</a>
+                <a class="btn btn-outline-primary btn-sm {% if status == "draft" %}active{% endif %}" href="?status=draft">Черновики</a>
+            </div>
+            {% if my_posts %}
+                <div class="mb-2">
+                    <p>Всего: <strong>{{ posts_total }}</strong></p>
+                    <p>Опубликовано: <strong>{{ posts_published }}</strong></p>
+                    <p>Черновиков: <strong>{{ posts_draft }}</strong></p>
+                </div>
+                <div class="list-group">
+                    {% for post in my_posts %}
+                    <a href="{% url 'blog:blog_detail' post.pk %}" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ post.title }}</h5>
+                            <small>{{ post.updated_at|date:"d M Y" }}</small>
+                        </div>
+                        <p class="mb-1 text-muted">{{ post.content|striptags|truncatechars:-120 }}</p>
+                        {% if post.is_published and post.is_approved %}
+                        <small class="badge bg-success">Опубликовано</small>
+                        {% elif post.is_published and not post.is_approved %}
+                        <small class="badge bg-warning text-dark">На модерации</small>
+                        {% else %}
+                        <small class="badge bg-secondary">Черновик</small>
+                        {% endif %}
+                    </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted">У вас пока нет записей.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

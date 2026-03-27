@@ -1,0 +1,621 @@
+[
+  {
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+      "action_time": "2026-03-25T22:40:08.902Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Linux",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+      "action_time": "2026-03-26T08:53:11.449Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "3",
+      "object_repr": "andreialekseevich85@gmail.com",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"Groups\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+      "action_time": "2026-03-26T08:53:49.846Z",
+      "user": 1,
+      "content_type": 6,
+      "object_id": "3",
+      "object_repr": "andreialekseevich85@gmail.com",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+      "action_time": "2026-03-26T10:54:41.658Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "2",
+      "object_repr": "Orange Pi",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+      "action_time": "2026-03-26T12:05:45.091Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "3",
+      "object_repr": "Python",
+      "action_flag": 1,
+      "change_message": "[{\"added\": {}}]"
+    }
+  },
+  {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+      "action_time": "2026-03-26T12:06:23.875Z",
+      "user": 1,
+      "content_type": 8,
+      "object_id": "1",
+      "object_repr": "Linux",
+      "action_flag": 2,
+      "change_message": "[{\"changed\": {\"fields\": [\"\\u041e\\u043f\\u0438\\u0441\\u0430\\u043d\\u0438\\u0435 \\u043a\\u0430\\u0442\\u0435\\u0433\\u043e\\u0440\\u0438\\u0438\"]}}]"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 3,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 3,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 3,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 3,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 2,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 2,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 2,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 2,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 4,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 4,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 4,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 4,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 5,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 5,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 5,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 5,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add Пользователь",
+      "content_type": 6,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change Пользователь",
+      "content_type": 6,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete Пользователь",
+      "content_type": 6,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view Пользователь",
+      "content_type": 6,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add Категория",
+      "content_type": 8,
+      "codename": "add_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change Категория",
+      "content_type": 8,
+      "codename": "change_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete Категория",
+      "content_type": 8,
+      "codename": "delete_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view Категория",
+      "content_type": 8,
+      "codename": "view_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add blog",
+      "content_type": 7,
+      "codename": "add_blog"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change blog",
+      "content_type": 7,
+      "codename": "change_blog"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete blog",
+      "content_type": 7,
+      "codename": "delete_blog"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view blog",
+      "content_type": 7,
+      "codename": "view_blog"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can approve blog",
+      "content_type": 7,
+      "codename": "can_approve_blog"
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "Модераторы",
+      "permissions": [
+        29,
+        33,
+        30,
+        31
+      ]
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "users",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "blog",
+      "model": "blog"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "blog",
+      "model": "category"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$sRU4hMVpOyMaErZNO2d0lB$fD77KJEmIsJxHwrA84Er/YTPMmoGHr9AsYtU7l/FmKE=",
+      "last_login": "2026-03-26T10:53:37.875Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-03-25T22:39:24.557Z",
+      "email": "admin@mail.ru",
+      "phone": null,
+      "avatar": "",
+      "avatar_mobile": "",
+      "avatar_tablet": "",
+      "avatar_desktop": "",
+      "country": null,
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$yk6MmJXow4OBdwWWIP5JjX$qDSimWvcEcOi4FbzQomG7SXhUOQmAuujZs/m1FHUYVQ=",
+      "last_login": "2026-03-26T15:04:32.941Z",
+      "is_superuser": false,
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-03-26T08:47:00.738Z",
+      "email": "aakwtf0@gmail.com",
+      "phone": null,
+      "avatar": "users/avatar/original/slider-desktop.png",
+      "avatar_mobile": "users/avatar/mobile/slider-desktop_mobile.webp",
+      "avatar_tablet": "users/avatar/tablets/slider-desktop_tablet.webp",
+      "avatar_desktop": "users/avatar/desktop/slider-desktop_desktop.webp",
+      "country": null,
+      "token": null,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$1200000$EYBRdlRBIAxtVugbv3GeBx$+hYj0eEPe5oEOsKii7JSTStYq/WnfSWPGK9fwmXcr2Q=",
+      "last_login": "2026-03-26T15:44:32.949Z",
+      "is_superuser": false,
+      "first_name": "moderator",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-03-26T08:52:00Z",
+      "email": "andreialekseevich85@gmail.com",
+      "phone": null,
+      "avatar": "",
+      "avatar_mobile": "",
+      "avatar_tablet": "",
+      "avatar_desktop": "",
+      "country": null,
+      "token": null,
+      "groups": [
+        1
+      ],
+      "user_permissions": [
+        33,
+        30
+      ]
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Linux",
+      "description": "Всё что касается linux",
+      "image": "blog/originals/Tux.png",
+      "created_at": "2026-03-25T22:40:08.809Z",
+      "updated_at": "2026-03-26T12:06:23.874Z"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Orange Pi",
+      "description": "Всё о Orange pi",
+      "image": "blog/originals/Orange-Pi-Logo-Vector.svg-.png",
+      "created_at": "2026-03-26T10:54:41.526Z",
+      "updated_at": "2026-03-26T10:54:41.526Z"
+    }
+  },
+  {
+    "model": "blog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Python",
+      "description": "Всё что касается Python",
+      "image": "blog/originals/1e230d4e437bb209f5064459a896807f.png",
+      "created_at": "2026-03-26T12:05:44.934Z",
+      "updated_at": "2026-03-26T12:05:44.934Z"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 1,
+    "fields": {
+      "author": 2,
+      "category": 1,
+      "title": "Инструкция по созданию LXC-контейнера (Debian)",
+      "content": "<p>LXC (Linux Containers) &mdash; это технология контейнеризации на уровне операционной системы, позволяющая запускать несколько изолированных экземпляров Linux (контейнеров) на одном ядре хост-системы.</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Это легковесная виртуализация, использующая cgroups и пространства имен (namespaces) для разделения ресурсов, обеспечивая изоляцию процессов, сети и файловых систем без накладных расходов полноценных ВМ.&nbsp;</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\"><strong><span style=\"font-weight: normal;\">Ключевые особенности LXC:</span></strong></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\"><strong><span style=\"font-weight: normal;\">Изоляция на уровне ОС:</span></strong> <span style=\"font-weight: normal;\">Контейнеры LXC работают как изолированные системы Linux, часто с собственным init-процессом (systemd), что делает их похожими на легкие виртуальные машины.</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\"><strong><span style=\"font-weight: normal;\">Эффективность:</span></strong> <span style=\"font-weight: normal;\">Так как все контейнеры используют общее ядро хоста, они потребляют значительно меньше оперативной памяти и ресурсов процессора, чем полные виртуальные машины.</span></p>\r\n<p style=\"line-height: 100%; font-weight: normal; margin-bottom: 0cm;\">LXC идеально подходит для запуска полноценных сервисов или приложений, требующих постоянного хранения данных (stateful), в отличие от Docker, который ориентирован на временные (stateless) процессы.</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\"><strong><span style=\"font-weight: normal;\">Управление ресурсами:</span></strong></p>\r\n<p style=\"line-height: 100%; font-weight: normal; margin-bottom: 0cm;\">Технологии cgroups позволяют точно ограничивать использование CPU, памяти и ввода-вывода (I/O) для каждого контейнера.</p>\r\n<p>Установим необходимые зависимости</p>\r\n<p><span style=\"font-family: terminal, monaco, monospace;\">sudo apt update</span></p>\r\n<p><span style=\"font-family: terminal, monaco, monospace;\">sudo apt upgrade</span></p>\r\n<p><span style=\"font-family: terminal, monaco, monospace;\">sudo apt install lxc -y</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo apt install lxcfs -y</span></p>\r\n<p><span style=\"font-family: terminal, monaco, monospace;\">sudo apt install apparmor apparmor-utils</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo apt-get install bridge-utils lxc</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Проверим, что LXC работает</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">lxc-checkconfig</span></p>\r\n<p>Предположим, хотим контейнер с именем debian.</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">sudo lxc-create -n debian -t download</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Далее появится меню выбора:</p>\r\n<ul>\r\n<li>\r\n<p><strong>Дистрибутив</strong> &rarr; <code>debian</code></p>\r\n</li>\r\n<li>\r\n<p><strong>Релиз</strong> &rarr; <code>bookworm</code> (или <code>bullseye</code>, на выбор)</p>\r\n</li>\r\n<li>\r\n<p><strong>Архитектура</strong> &rarr; <code>amd64</code> (или <code>arm64</code>, если у вас ARM-процессор, например Orange Pi).</p>\r\n</li>\r\n</ul>\r\n<p>Прописываем в ручную</p>\r\n<p>После загрузки образа контейнер будет создан.</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Также можно посмотреть список контейнеров:</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo lxc-ls --fancy</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Файл конфигурации контейнера находится по адресу</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo nano /var/lib/lxc/debian/config&nbsp;</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">где \"/debian/\" это имя контейнера</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Создадим пароль для root.</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Войдите в контейнер:</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo lxc-attach -n debian</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">&nbsp;</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Наберите команду:</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">passwd</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Два раза введите новый пароль</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Создадим пользователя</p>\r\n<p>Используйте команду adduser, так как она интерактивная и сразу предложит создать пароль и домашнюю папку:</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">adduser myuser &nbsp;</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Замените myuser на желаемое имя.</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Добавьте пользователя в группу sudo:</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">usermod -aG sudo myuser</span></p>\r\n<p>Откройте файл через visudo:</p>\r\n<p><span style=\"font-family: terminal, monaco, monospace;\">sudo visudo</span></p>\r\n<p>Добавьте своего пользователя</p>\r\n<pre style=\"margin-bottom: 0.5cm;\"><span style=\"font-family: terminal, monaco, monospace;\">myuser ALL=(ALL:ALL) ALL</span></pre>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Добавим контейнеру автозапуск на случай перезагрузки системы</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">echo \"lxc.start.auto = 1\" | sudo tee -a /var/lib/lxc/debian/config</span></p>\r\n<p>В дальнейшем не забудьте сменить мост в конфигурации котейнера, что бы он был доступен в локальной сети и получал адрес от роутера</p>\r\n<p>Откройте&nbsp;<br><span style=\"font-family: terminal, monaco, monospace;\">sudo nano /var/lib/lxc/debian/config&nbsp;</span></p>\r\n<p>И замените в строке мост&nbsp;</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">lxc.net.0.link = lxcbr0 на br0</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">что бы было так</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">lxc.net.0.link = br0</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Сохраните файл</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">Ctrl+o, Enter, Ctrl+x</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Если ваш мост называется иначе, укажите другое имя моста.&nbsp;</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Так же рекомендуется настроить статический&nbsp; MAC адрес, который может меняться при перезагрузке LXC контейнера, и тем самым терять ip адрес назначенный роутером.</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Войдите в контейнер</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo lxc-attach -n debian</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">посмотрите какой в нем MAC адрес</p>\r\n<p>ip link show eth0</p>\r\n<p>Пример:</p>\r\n<p><span style=\"font-family: terminal, monaco, monospace;\">link/ether 7e:d5:32:54:4c:a8 brd ff:ff:ff:ff:ff:ff link-netnsid 0</span></p>\r\n<p><span style=\"font-family: terminal, monaco, monospace;\">7e:d5:32:54:4c:a8</span> &mdash; MAC адрес&nbsp;</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Выйдите из контейнера</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Откройте файл конфигурации контейнера на хосте:</p>\r\n<p><span style=\"font-family: terminal, monaco, monospace;\">sudo nano /var/lib/lxc/debian/config</span></p>\r\n<p>Найдите или добавьте строку:<br><span style=\"font-family: terminal, monaco, monospace;\">lxc.net.0.hwaddr = 7e:d5:32:54:4c:a8</span>&nbsp; &nbsp;(впишите ваш MAC)</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Сохраните файл</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">Ctrl+o, Enter, Ctrl+x</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">и перезапустите контейнер. Теперь этот MAC не изменится</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">После этого можно назначить статические адреса на роутере для данного MAC адреса.</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Полезные команды:</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Прямая консоль контейнера:</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">sudo lxc-console -n debian</p>\r\n<p>(Выход &mdash;&nbsp;Ctrl+a q).</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Запуск контейнера</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo lxc-start -n debian</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Остановка контейнера</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo lxc-stop -n debian</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Информация о контейнере:</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo lxc-info -n debian</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Удаление контейнера</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo lxc-destroy debian</span></p>",
+      "preview": "blog/originals/lxc.jpg",
+      "preview_mobile": "blog/mobile/lxc_mobile.webp",
+      "preview_tablet": "blog/tablets/lxc_tablet.webp",
+      "preview_desktop": "blog/desktop/lxc_desktop.webp",
+      "created_at": "2026-03-26T08:50:08.927Z",
+      "updated_at": "2026-03-26T13:47:14.320Z",
+      "is_published": true,
+      "is_approved": true,
+      "views_count": 34
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 3,
+    "fields": {
+      "author": 2,
+      "category": 2,
+      "title": "Настройка Orange Pi 5 Plus для загрузки с ssd",
+      "content": "<p><a name=\"__DdeLink__41587_1027876478\"></a> <span style=\"font-size: large;\">После покупки одноплатного мини пк Orange Pi многие сталкиваются с проблемой запуска с ssd так как по умолчанию эти пк настроены на загрузку с sd карты.</span></p>\r\n<p><span style=\"font-size: large;\">Так же можно попробовать загрузиться с usb флешки.&nbsp;</span></p>\r\n<p><span style=\"font-size: large;\">Согласитесь не очень удобно, когда ваша система работает на usb флешке. Занимает порт usb и мешает.</span></p>\r\n<p><span style=\"font-size: large;\">У Orange Pi 5 Plus нет bios интерфейса как такового. Поэтому настроить запуск выбрав носитель стандартным способом не получиться.</span></p>\r\n<p><span style=\"font-size: large;\">В данной инструкции я постраюсь описать метод выбора загрузки с нужного носителя.&nbsp;</span></p>\r\n<p><span style=\"font-size: large;\">Все действия производим на Debian trixie. Думаю для Ubuntu все теже шаги применимы.</span></p>\r\n<p><span style=\"font-size: large;\">Загрузиться мы можем с sd, usb или с ssd Nvme.&nbsp;</span></p>\r\n<p><span style=\"font-size: large;\">Приготовьте заранее записанный образ на SSD носитель.</span></p>\r\n<p><span style=\"font-size: large;\">Я рекомендую использовать образ <a href=\"https://www.armbian.com/orange-pi-5-plus/\" target=\"_blank\" rel=\"noopener\">armbian</a>.&nbsp;</span></p>\r\n<p><span style=\"font-size: large;\">На выбор есть debian и ubuntu.</span></p>\r\n<p><span style=\"font-size: large;\">Почему armbian?</span></p>\r\n<p><span style=\"font-size: large;\">Дистрибутивы производителя Orange pi имеют предустановленного пользователя и пакеты скачиваются с репозиториев huawei.</span></p>\r\n<p><span style=\"font-size: large;\">Да вы можете сменить пути для загрузки обновлнений и скачивания пакетов, а так же удалить предустановленного пользователя, если у вас уже есть опыт работы с linux дистрибутивами. Но заданные настройки меня уже наводят на неприятные мыслы.</span></p>\r\n<p><span style=\"font-size: large;\">В armbian вы сами назначаете пароль root и добавляете пользователя.</span></p>\r\n<p><span style=\"font-size: large;\">Запишите скачанный образ через программу rufus, если вы используете windows или Balena Etcher, если вы используете linux дистрибутив.</span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Устаноите rkdeveloptool</span></p>\r\n<p align=\"left\"><span style=\"font-family: terminal, monaco, monospace;\"><span style=\"font-size: large;\">sudo apt update</span></span></p>\r\n<p align=\"left\"><span style=\"font-family: terminal, monaco, monospace;\"><span style=\"font-size: large;\">sudo apt install rkdeveloptool</span></span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Скачайте папку <a href=\"https://drive.google.com/drive/folders/1DQv_OoJvMRIQDsKskkb75hBUnUTr1HS0\" target=\"_blank\" rel=\"noopener\">Android and Linux image writing tool-RKDevTool and driver</a></span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">В ней и будут файлы которые мы должны перекинуть в загрузчик</span></p>\r\n<p><span style=\"font-size: large;\">MiniLoaderAll.bin - Загружается через MaskROM в RAM, минимальный Bootloader</span></p>\r\n<p><span style=\"font-size: large;\">rk3588_linux_pcie.cfg - Конфигурация для прошивки (для скриптов, обычно не нужен)</span></p>\r\n<p><span style=\"font-size: large;\">rkspi_loader.img - SPL/U-Boot для запуска OS с SPI/SSD/SD</span></p>\r\n<h3 class=\"western\"><span style=\"font-size: large;\">Приготовьте ваш Orange Pi 5 Plus.&nbsp;</span></h3>\r\n<p><span style=\"font-size: large;\">В нем не должно быть ни каких накопителей.</span></p>\r\n<p><span style=\"font-size: large;\">Полностью обесточь Orange Pi 5 Plus</span></p>\r\n<p><span style=\"font-size: large;\">Зажми кнопку BOOT, которая расположена около порта type-C</span></p>\r\n<p><span style=\"font-size: large;\">подключаем USB Type C к ПК</span></p>\r\n<p><span style=\"font-size: large;\">Включи питание, ставив адаптер питания.</span></p>\r\n<p><span style=\"font-size: large;\">Держим BOOT ~5&ndash;7 секунд, потом отпускаем.</span></p>\r\n<p><span style=\"font-size: large;\">Посмотрим среди устройств в терминале на пк отображается наш Orange Pi:</span></p>\r\n<p><span style=\"font-family: terminal, monaco, monospace;\"><span style=\"font-size: large;\">lsusb</span></span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Водим команду для использования утилиты:</span></p>\r\n<p align=\"left\"><span style=\"font-family: terminal, monaco, monospace;\"><span style=\"font-size: large;\">rkdeveloptool ld</span></span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Ожидаемый вывод:</span></p>\r\n<p align=\"left\"><span style=\"font-family: terminal, monaco, monospace;\"><span style=\"font-size: large;\">DevNo=1 Vid=0x2207,Pid=0x350b Maskrom</span></span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Загружаем MiniLoader в RAM память.</span></p>\r\n<p align=\"left\"><span style=\"font-family: terminal, monaco, monospace;\"><span style=\"font-size: large;\">sudo rkdeveloptool db /home/user/scripts/MiniLoaderAll.bin</span></span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">где user - это папка нашего пользователя. </span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Возможно у вас другой путь, по которому вы сохранили раннее скаченнце файлы.</span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Должно быть:</span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Downloading bootloader succeeded</span></p>\r\n<h3 class=\"western\" align=\"left\"><span style=\"font-size: large;\">Запись SPL/U-Boot на SSD</span></h3>\r\n<p><span style=\"font-size: large;\">Введите команду</span></p>\r\n<p align=\"left\"><span style=\"font-family: terminal, monaco, monospace;\"><span style=\"font-size: large;\">sudo rkdeveloptool wl 0 /home/user/scripts/rkspi_loader.img</span></span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Здесь 0 = первый сектор устройства, Loader/SPL будет загружать OS с носителя</span></p>\r\n<p align=\"left\"><span style=\"font-size: large;\">Выключаем питание вынимая кабель из orange pi</span></p>\r\n<p><span style=\"font-size: large;\">Вставляем SSD в Orange Pi 5 Plus</span></p>\r\n<p><span style=\"font-size: large;\">Включаем питание</span></p>\r\n<p><span style=\"font-size: large;\">Временный Loader в RAM найдет SPL и передаст управление SSD, на котором у нас записан образ armbian.</span></p>",
+      "preview": "blog/originals/pi5-plus-9.png",
+      "preview_mobile": "blog/mobile/pi5-plus-9_mobile.webp",
+      "preview_tablet": "blog/tablets/pi5-plus-9_tablet.webp",
+      "preview_desktop": "blog/desktop/pi5-plus-9_desktop.webp",
+      "created_at": "2026-03-26T13:40:31.916Z",
+      "updated_at": "2026-03-26T13:40:31.916Z",
+      "is_published": true,
+      "is_approved": true,
+      "views_count": 23
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 4,
+    "fields": {
+      "author": 2,
+      "category": 3,
+      "title": "Установка любой версии Python на Debian",
+      "content": "<p>Установим необходимые зависимости:</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">&nbsp;</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo apt update &amp;&amp; sudo apt install -y wget build-essential libncursesw5-dev libreadline-dev \\</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">libssl-dev libsqlite3-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev \\</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">liblzma-dev uuid-dev tk-dev</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">&nbsp;</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Скачаем и установим. В данной статье рассматривается версия python 3.12.3</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">cd /usr/src</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo wget https://www.python.org/ftp/python/3.12.3/Python-3.12.3.tgz</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo tar -xf Python-3.12.3.tgz</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo rm Python-3.12.3.tgz # &larr; удаление архива</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">cd Python-3.12.3</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo ./configure --enable-optimizations</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo make -j$(nproc)</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">sudo make altinstall</span></p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">&nbsp;</p>\r\n<p style=\"margin-bottom: 0cm; line-height: 100%;\">Проверка установленной версии:</p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\"><span style=\"font-family: terminal, monaco, monospace;\">python3.12 --version</span></p>\r\n<p style=\"line-height: 100%; margin-bottom: 0cm;\">&nbsp;</p>",
+      "preview": "blog/originals/Python-logo-notext.svg.png",
+      "preview_mobile": "blog/mobile/Python-logo-notext.svg_mobile.webp",
+      "preview_tablet": "blog/tablets/Python-logo-notext.svg_tablet.webp",
+      "preview_desktop": "blog/desktop/Python-logo-notext.svg_desktop.webp",
+      "created_at": "2026-03-26T13:55:58.682Z",
+      "updated_at": "2026-03-26T13:55:58.682Z",
+      "is_published": true,
+      "is_approved": true,
+      "views_count": 6
+    }
+  }
+]

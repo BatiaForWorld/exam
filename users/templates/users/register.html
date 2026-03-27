@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% block title %}Регистрация на сайт{% endblock %}
+{% block content %}
+    <h1 class="text-center fw-bold card box-shadow"> Регистрация </h1>
+    <div class="container my-5">
+        <div class="row mx-auto">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="mb-3">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% for error in field.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    <button class="btn btn-primary w-100">Зарегистрироваться</button>
+                </form>
+                <div class="row mx-auto">
+                    <a href="{% url 'users:login' %}" class="btn btn-primary my-4">Войти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
