@@ -610,6 +610,16 @@ docker compose up -d --build
 ```angular2html
 cd /var/www/it-linux
 ```
+### Создайте группу модераторов
+```angular2html
+docker compose exec web python manage.py create_moderators
+```
+Если нужно отчистить БД
+
+```angular2html
+docker compose exec web python manage.py flush --noinput
+```
+
 ### Удаление проекта с VPS
 ```angular2html
 cd /var/www/it-linux

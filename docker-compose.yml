@@ -28,12 +28,14 @@ services:
     command: >
       sh -c "python manage.py migrate --noinput &&
              mkdir -p /app/staticfiles &&
+             mkdir -p /app/media &&
              python manage.py collectstatic --noinput &&
              (python manage.py createsuperuser --noinput || true) &&
              gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3"
     volumes:
       - .:/app
       - static_value:/app/staticfiles
+      - media_value:/app/media
     env_file: .env
     depends_on:
       db:
@@ -48,6 +50,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - static_value:/app/staticfiles:ro
+      - media_value:/app/media:ro
       - ./404.html:/usr/share/nginx/html/404.html:ro
     depends_on:
       - web
@@ -55,3 +58,4 @@ services:
 volumes:
   postgres_data:
   static_value:
+  media_value:

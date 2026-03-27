@@ -1,3 +1,5 @@
+"""Views приложения пользователей: регистрация, профиль и восстановление доступа."""
+
 from django.contrib.auth.views import (
     LoginView,
     PasswordChangeView,

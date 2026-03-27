@@ -1,3 +1,5 @@
+"""Служебные views проекта для обработки системных страниц."""
+
 from django.shortcuts import render
 
 
