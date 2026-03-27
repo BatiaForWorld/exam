@@ -1,0 +1,96 @@
+{% extends 'blog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="container py-4">
+    <div class="card shadow-sm bg-body-tertiary">
+        <div class="card-body">
+            <div class="d-flex mb-2 justify-content-center align-items-center">
+                <h1 class="card-title mb-0 fs-4 fs-md-2">{{ object.title }}</h1>
+            </div>
+            <div class="text-end p-3">
+                {% if object.category %}
+                <a class="btn btn-sm btn-outline-secondary"
+                   href="{% url 'blog:blog_list' %}?category={{ object.category.id }}">{{ object.category.name }}</a>
+                {% endif %}
+            </div>
+            {% if object.preview or object.preview_mobile or object.preview_tablet or object.preview_desktop %}
+            <div class="text-center mb-3">
+                {% responsive_picture object classes='img-fluid rounded loading="lazy"' style='max-height: 420px; object-fit: cover;' %}
+            </div>
+            {% endif %}
+
+            <div class="mb-4">
+                <div class="border rounded p-3 bg-light">{{ object.content|responsive_content_images }}</div>
+            </div>
+
+            <div class="row mb-3 text-muted">
+                {% if user.is_authenticated and object.author == user %}
+                <div class="mb-2 text-md-end">
+                    <strong>Статус:</strong>
+                    {% if object.is_published %}
+                        {% if object.is_approved %}
+                    <span class="badge bg-success">Опубликовано</span>
+                        {% else %}
+                    <span class="badge bg-warning text-dark">На модерации</span>
+                        {% endif %}
+                    {% else %}
+                    <span class="badge bg-secondary">Черновик</span>
+                    {% endif %}
+                </div>
+                {% endif %}
+                <div class="mb-2 text-md-end">
+                    <strong>Просмотров:</strong> {{ object.views_count }}
+                </div>
+                <div class="mb-2 text-md-end">
+                    <strong>Создано:</strong> {{ object.created_at|date:"d M Y" }}
+                </div>
+                <div class="mb-2 text-md-end">
+                    <strong>Обновлено:</strong> {{ object.updated_at|date:"d M Y" }}
+                </div>
+
+            </div>
+
+            {% if user.is_authenticated and object.author == user %}
+            <div class="d-flex flex-wrap gap-2 justify-content-center mb-3">
+                <a class="btn btn-outline-primary" href="{% url 'blog:blog_update' object.pk %}">Редактировать</a>
+                <a class="btn btn-danger" href="{% url 'blog:blog_delete' object.pk %}">Удалить</a>
+                {% if not object.is_published %}
+                <form method="post" action="{% url 'blog:blog_submit_for_review' object.pk %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Опубликовать</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% if user.is_authenticated %}
+                {% if perms.blog.can_approve_blog or user.is_superuser %}
+            <div class="d-flex flex-wrap gap-2 justify-content-center mb-3">
+                <form method="post" action="{% url 'blog:blog_toggle_publish' object.pk %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn {% if object.is_published %}btn-warning{% else %}btn-success{% endif %}">{% if object.is_published %}Скрыть{% else %}Опубликовать{% endif %}</button>
+                </form>
+
+            </div>
+            {% endif %}
+            {% endif %}
+            <div class="col-9 mx-auto">
+        <div class="position-relative p-5">
+            <div class="position-absolute top-50 start-0 translate-middle">
+                {% if previous_post %}
+                <a class="btn btn-outline-secondary text-center" href="{% url 'blog:blog_detail' previous_post.pk %}">←</a>
+                {% endif %}
+            </div>
+            <div class="position-absolute top-50 start-50  translate-middle">
+                <a class="btn btn-dark" href="{% url 'blog:blog_list' %}">К списку статей</a>
+            </div>
+            <div class="position-absolute top-50 start-100 translate-middle">
+                {% if next_post %}
+                <a class="btn btn-outline-secondary text-center" href="{% url 'blog:blog_detail' next_post.pk %}">→</a>
+                {% endif %}
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

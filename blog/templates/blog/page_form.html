@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container py-4">
+    <div class="card shadow-sm bg-body-tertiary">
+        <div class="card-body">
+            <h1 class="text-center mb-4">
+                {% if object %}Редактировать{% else %}Добавить{% endif %} запись
+            </h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                <div class="mb-3"> {{ form.title.label_tag }} {{ form.title }} </div>
+                <div class="mb-3"> {{ form.content.label_tag }} {{ form.content }} </div>
+                <div class="mb-3"> {{ form.preview.label_tag }} {{ form.preview }} </div>
+                <div class="mb-3"> {{ form.category.label_tag }} {{ form.category }} </div>
+                {% if request.user.is_superuser or perms.blog.can_approve_blog %}
+                <div class="mb-3"> {{ form.is_published.label_tag }} {{ form.is_published }} </div>
+                {% else %}
+                <div class="mb-3" style="display:none;"> {{ form.is_published }} </div>
+                {% endif %}
+                <div class="d-flex gap-2">
+                    <button type="submit" name="action" value="save" class="btn btn-primary">
+                        {% if object %}Сохранить{% else %}Создать{% endif %}
+                    </button>
+                    <button type="submit" name="action" value="draft" class="btn btn-secondary">
+                        Сохранить черновик
+                    </button>
+                    {% if not request.user.is_superuser and not perms.blog.can_approve_blog %}
+                    <button type="submit" name="action" value="submit" class="btn btn-success">
+                        Опубликовать
+                    </button>
+                    {% endif %}
+                    <a class="btn btn-dark" href="{% url 'blog:blog_list' %}">Отменить</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

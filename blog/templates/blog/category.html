@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="container py-4">
+
+<h1 class="text-center fw-bold card box-shadow"> Категории статей </h1>
+    <div class="row text-center">
+        <div class="container text-white">
+            <ul class="list-unstyled">
+                {% for category in categories %}
+                <li class="mb-5 mt-3">
+                    <h3 class="p-1"><span class="fw-bold"><a href="{% url 'blog:blog_list' %}?category={{ category.id }}">{{ category.name }}</a></span></h3>
+                    {% responsive_category_picture category classes='rounded-circle category-responsive-img loading="lazy" role="img" height="190" width="190"'%}
+                    <p class="text-muted">{{ category.description|default:"Описание отсутствует" }}</p>
+                    <hr class="border-secondary border-3 opacity-50  w-50 mx-auto">
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+{% block title %}Обратная форма связи{% endblock %}
+{% load my_tags %}
+{% block content %}
+<h1 class="text-center fw-bold card box-shadow"> Обратная форма связи </h1>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+    <div class="col-lg-5 col-md-6 col-sm-12 mt-5 container">
+        <div class="card mb-4 box-shadow ">
+            <div class="card-header ">
+                <h4 class="my-0 font-weight-normal text-center">Свяжитесь с нами</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label for="name">Имя</label>
+                        <input type="text" name="name" class="form-control" id="name"
+                               placeholder="Ваше имя" required value="{{ form.name.value|default_if_none:'' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" id="email"
+                               placeholder="example@mail.com" required value="{{ form.email.value|default_if_none:'' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message">Сообщение</label>
+                        <textarea name="message" class="form-control" id="message"
+                                  placeholder="Ваше сообщение" required>{{ form.message.value|default_if_none:'' }}</textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark">Отправить</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

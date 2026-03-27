@@ -1,0 +1,186 @@
+{% load static %}
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta
+            name="Kazantsev A.A "
+            content="Bootstrap"/>
+    <meta name="generator" content="Astro v5.13.2"/>
+    <title>Blog</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <script src="{% static 'js/color-modes.js' %}"></script>
+    <meta name="theme-color" content="#712cf9"/>
+    <style>
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: #0000001a;
+            border: solid rgba(0, 0, 0, 0.15);
+            border-width: 1px 0;
+            box-shadow: inset 0 0.5em 1.5em #0000001a,
+            inset 0 0.125em 0.5em #00000026;
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -0.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .bd-mode-toggle .bi {
+            width: 1em;
+            height: 1em;
+        }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+{% include 'blog/navigation/navbar.html' %}
+    <div class="col-lg-8 card shadow-sm mx-auto">
+        <div class="card-body">
+            <form method="get" class="d-flex gap-2" action="{% url 'blog:blog_list' %}">
+                <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Поиск по заголовку и содержимому">
+                <button type="submit" class="btn btn-secondary">Найти</button>
+            </form>
+        </div>
+    </div>
+<div class="container my-2 shadow p-3 mb-5 bg-body-tertiary rounded">
+
+    {% block content %}
+
+
+    {% endblock %}
+
+    <p class="float-end mb-1">
+        <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor"
+                 class="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
+                <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0"/>
+            </svg>
+        </a>
+    </p>
+
+
+</div>
+
+
+<div class="row mt-auto">
+
+    {% include 'blog/navigation/footer.html' %}
+
+</div>
+<script src="{% static 'js/bootstrap.bundle.js' %}" class="astro-vvvwv3sm"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('input[type=password]').forEach(function (input) {
+            // Если уже есть кнопка, пропустить.
+            if (input.nextElementSibling && input.nextElementSibling.classList.contains('password-show-toggle')) {
+                return;
+            }
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'input-group mb-3';
+
+            const parent = input.parentNode;
+            if (parent.classList.contains('input-group')) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'btn btn-outline-secondary password-show-toggle';
+                button.innerText = '👁';
+                button.title = 'Показать/скрыть пароль';
+
+                button.addEventListener('click', function () {
+                    input.type = input.type === 'password' ? 'text' : 'password';
+                });
+
+                parent.appendChild(button);
+                return;
+            }
+
+            const next = input.nextSibling;
+            parent.replaceChild(wrapper, input);
+            wrapper.appendChild(input);
+
+            const buttonGroup = document.createElement('button');
+            buttonGroup.type = 'button';
+            buttonGroup.className = 'btn btn-outline-secondary password-show-toggle';
+            buttonGroup.innerText = '👁';
+            buttonGroup.title = 'Показать/скрыть пароль';
+
+            buttonGroup.addEventListener('click', function () {
+                input.type = input.type === 'password' ? 'text' : 'password';
+            });
+
+            wrapper.appendChild(buttonGroup);
+            if (next) wrapper.appendChild(next);
+        });
+    });
+</script>
+</body>
+</html>

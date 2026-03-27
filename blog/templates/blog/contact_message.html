@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% block title %}Обратная форма связи{% endblock %}
+{% load my_tags %}
+{% block content %}
+<h1 class="text-center fw-bold card box-shadow"> Обратная форма связи </h1>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+    <div class="col-lg-5 col-md-6 col-sm-12 mt-5 container">
+        <div class="card mb-4 box-shadow ">
+            <div class="card-header ">
+                <h4 class="my-0 font-weight-normal text-center">Спасибо за ваше сообщение</h4>
+            </div>
+            <div class="card-body">
+                <a href="{% url 'blog:index' %}" class="navbar-brand text-center">Вернуться на главную</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

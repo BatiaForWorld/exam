@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block title %}Смена аватара{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <h2>Смена аватара</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-3">{{ form.avatar.label_tag }} {{ form.avatar }}</div>
+        <button type="submit" class="btn btn-primary">Сохранить аватар</button>
+        <a href="{% url 'users:profile' %}" class="btn btn-secondary">Отменить</a>
+    </form>
+</div>
+{% endblock %}

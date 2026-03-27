@@ -1,0 +1,70 @@
+* {
+  font-family: 'Georgia', sans-serif;
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .card-body p,
+  .card-title,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 0.95rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .bd-placeholder-img,
+  .card-img-top
+
+}
+
+
+.glass-text {
+  background-color: transparent; /* Прозрачный фон */
+  color: #fff; /* Базовый цвет текста */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; /* Делает текст прозрачным, чтобы видеть фон */
+  background-image: linear-gradient(to right, black, silver, white, silver, black); /* Линейный градиент */
+  animation: moveGradient 5s linear infinite; /* Анимация движения градиента */
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Создает тени и блики */
+}
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+.fade-text {
+  font-size: 48px;
+  font-weight: bold;
+  color: #fff;
+  animation: fade 2s infinite alternate;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0.3; /* Очень прозрачный */
+  }
+  100% {
+    opacity: 1; /* Полностью видимый */
+  }
+}
+
