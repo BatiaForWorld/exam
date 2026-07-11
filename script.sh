@@ -67,7 +67,10 @@ detect_admin_cidr() {
     if [ -n "$ADMIN_CIDR" ]; then
         return
     fi
-    local client_ip="${SSH_CLIENT%% *}"
+    local client_ip=""
+    if [ -n "${SSH_CLIENT:-}" ]; then
+        client_ip="${SSH_CLIENT%% *}"
+    fi
     if [ -z "$client_ip" ] && [ -n "${SSH_CONNECTION:-}" ]; then
         client_ip="${SSH_CONNECTION%% *}"
     fi
