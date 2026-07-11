@@ -16,6 +16,7 @@ SSH_PUBLIC_KEY="${SSH_PUBLIC_KEY:-}"
 ENABLE_FWKNOP="${ENABLE_FWKNOP:-1}"
 ENABLE_WIREGUARD_PLACEHOLDER="${ENABLE_WIREGUARD_PLACEHOLDER:-1}"
 THREAT_SET_TIMEOUT="${THREAT_SET_TIMEOUT:-7d}"
+MAIL_HOSTNAME="${MAIL_HOSTNAME:-$(hostname -f 2>/dev/null || hostname)}"
 
 log() {
     printf '[security-bootstrap] %s\n' "$*"
@@ -37,6 +38,19 @@ backup_file() {
     if [ -e "$path" ] && [ ! -e "$path.bootstrap-backup" ]; then
         cp -a "$path" "$path.bootstrap-backup"
     fi
+}
+
+validate_public_key_string() {
+    local key_string="$1"
+    local key_tmp
+
+    key_tmp="$(mktemp)"
+    printf '%s\n' "$key_string" > "$key_tmp"
+    if ! ssh-keygen -l -f "$key_tmp" >/dev/null 2>&1; then
+        rm -f "$key_tmp"
+        fail "SSH_PUBLIC_KEY is not a valid public key; do not use the README placeholder"
+    fi
+    rm -f "$key_tmp"
 }
 
 detect_wan_if() {
@@ -80,10 +94,116 @@ ensure_apt() {
         fail "this installer supports Debian/Ubuntu with apt-get"
     fi
     export DEBIAN_FRONTEND=noninteractive
+    printf 'postfix postfix/mailname string %s\n' "$MAIL_HOSTNAME" | debconf-set-selections || true
+    printf 'postfix postfix/main_mailer_type string Internet Site\n' | debconf-set-selections || true
     apt-get update
     apt-get install -y --no-install-recommends \
-        ca-certificates curl gawk iproute2 cron logrotate \
-        openssh-server nftables fail2ban fwknop-server wireguard-tools
+        ca-certificates curl gawk iproute2 cron logrotate openssl rsyslog \
+        openssh-server nftables fail2ban fwknop-server wireguard-tools \
+        nginx postfix dovecot-core dovecot-imapd dovecot-lmtpd dovecot-sieve dovecot-managesieved
+
+    systemctl enable --now rsyslog
+}
+
+write_postfix_abuse_controls() {
+    install -d -m 0755 /etc/postfix
+    touch /etc/postfix/sasl_abuse_blocklist
+    chmod 0644 /etc/postfix/sasl_abuse_blocklist
+    postmap /etc/postfix/sasl_abuse_blocklist
+
+    postconf -e "smtpd_recipient_restrictions = check_sasl_access hash:/etc/postfix/sasl_abuse_blocklist, reject_unknown_recipient_domain, reject_non_fqdn_recipient, reject_invalid_helo_hostname, reject_unauth_destination"
+    postconf -e "smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination"
+    postconf -e "smtpd_sasl_authenticated_header = yes"
+    postconf -e "smtpd_tls_auth_only = yes"
+    postconf -e "maillog_file = /var/log/mail.log"
+
+    cat > /usr/local/sbin/postfix-abuse-user <<'EOF'
+#!/bin/sh
+set -eu
+
+MAP_FILE="${MAP_FILE:-/etc/postfix/sasl_abuse_blocklist}"
+POSTMAP_BIN="${POSTMAP_BIN:-/usr/sbin/postmap}"
+POSTFIX_BIN="${POSTFIX_BIN:-/usr/sbin/postfix}"
+
+usage() {
+    echo "Usage: $0 block USER@example.com [reason] | unblock USER@example.com | list | rebuild" >&2
+    exit 2
+}
+
+command="${1:-}"
+user="${2:-}"
+reason="${3:-suspected outbound mail abuse}"
+
+normalize_user() {
+    printf '%s\n' "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+remove_user_line() {
+    awk -v user="$1" '$1 != user { print }' "$MAP_FILE" 2>/dev/null || true
+}
+
+rebuild() {
+    "$POSTMAP_BIN" "$MAP_FILE"
+    "$POSTFIX_BIN" reload >/dev/null 2>&1 || true
+}
+
+case "$command" in
+    block)
+        [ -n "$user" ] || usage
+        user="$(normalize_user "$user")"
+        tmp="$(mktemp)"
+        remove_user_line "$user" > "$tmp"
+        printf '%s REJECT Account temporarily disabled: %s\n' "$user" "$reason" >> "$tmp"
+        cat "$tmp" > "$MAP_FILE"
+        rm -f "$tmp"
+        rebuild
+        ;;
+    unblock)
+        [ -n "$user" ] || usage
+        user="$(normalize_user "$user")"
+        tmp="$(mktemp)"
+        remove_user_line "$user" > "$tmp"
+        cat "$tmp" > "$MAP_FILE"
+        rm -f "$tmp"
+        rebuild
+        ;;
+    list)
+        cat "$MAP_FILE"
+        ;;
+    rebuild)
+        rebuild
+        ;;
+    *)
+        usage
+        ;;
+esac
+EOF
+    chmod 0750 /usr/local/sbin/postfix-abuse-user
+    systemctl enable postfix
+    systemctl reload postfix || systemctl restart postfix
+}
+
+prepare_log_files() {
+    install -d -m 0755 /var/log/nginx
+    cat > /etc/rsyslog.d/30-fwknopd.conf <<'EOF'
+if $programname == 'fwknopd' then /var/log/fwknopd.log
+& stop
+EOF
+    systemctl restart rsyslog
+
+    touch /var/log/auth.log \
+        /var/log/mail.log \
+        /var/log/dovecot.log \
+        /var/log/nginx/access.log \
+        /var/log/nginx/error.log \
+        /var/log/fwknopd.log \
+        /var/log/fail2ban.log
+
+    if getent group adm >/dev/null 2>&1; then
+        chgrp adm /var/log/auth.log /var/log/mail.log /var/log/dovecot.log /var/log/fwknopd.log /var/log/fail2ban.log || true
+        chmod 0640 /var/log/auth.log /var/log/mail.log /var/log/dovecot.log /var/log/fwknopd.log /var/log/fail2ban.log || true
+    fi
+    chmod 0644 /var/log/nginx/access.log /var/log/nginx/error.log || true
 }
 
 install_ssh_key() {
@@ -104,6 +224,7 @@ install_ssh_key() {
     chmod 0600 "$key_file"
 
     if [ -n "$SSH_PUBLIC_KEY" ]; then
+        validate_public_key_string "$SSH_PUBLIC_KEY"
         if ! grep -qxF "$SSH_PUBLIC_KEY" "$key_file"; then
             printf '%s\n' "$SSH_PUBLIC_KEY" >> "$key_file"
         fi
@@ -555,21 +676,27 @@ EOF
     chmod 0644 /etc/cron.d/update-nft-threat-sets
 }
 
-write_fwknop_placeholder() {
+write_fwknop_config() {
     if [ "$ENABLE_FWKNOP" != "1" ]; then
         return
     fi
+    local fwknop_key fwknop_hmac client_file
+
     backup_file /etc/fwknop/access.conf
     install -d -m 0750 /etc/fwknop
-    if [ ! -s /etc/fwknop/access.conf ]; then
+    client_file="/root/fwknop-client-${MAIL_HOSTNAME}.conf"
+
+    if [ -s /etc/fwknop/access.conf ] && ! grep -q 'CHANGE_ME' /etc/fwknop/access.conf; then
+        log "existing /etc/fwknop/access.conf has real keys; keeping it"
+    else
+        fwknop_key="$(openssl rand -base64 32)"
+        fwknop_hmac="$(openssl rand -base64 32)"
         cat > /etc/fwknop/access.conf <<EOF
-# Replace keys before relying on fwknop. Generate them with:
-# fwknop --key-gen --use-hmac --save-rc-stanza
 SOURCE                  ANY;
 REQUIRE_SOURCE_ADDRESS  Y;
 OPEN_PORTS              tcp/$SSH_PORT;
-KEY_BASE64              CHANGE_ME;
-HMAC_KEY_BASE64         CHANGE_ME;
+KEY_BASE64              $fwknop_key;
+HMAC_KEY_BASE64         $fwknop_hmac;
 HMAC_DIGEST_TYPE        SHA256;
 FW_ACCESS_TIMEOUT       60;
 CMD_CYCLE_OPEN          nft add element inet filter fwknop_ssh_v4 { \$SRC timeout 60s };
@@ -578,13 +705,34 @@ CMD_CYCLE_TIMER         60;
 ENABLE_CMD_EXEC         Y;
 EOF
         chmod 0600 /etc/fwknop/access.conf
+
+        cat > "$client_file" <<EOF
+# Copy this stanza to the admin workstation fwknop rc file, then remove it from the VPS if desired.
+[${MAIL_HOSTNAME}-ssh]
+ACCESS                      tcp/$SSH_PORT
+SPA_SERVER                  $MAIL_HOSTNAME
+SPA_SERVER_PORT             $FWKNOP_PORT
+KEY_BASE64                  $fwknop_key
+HMAC_KEY_BASE64             $fwknop_hmac
+HMAC_DIGEST_TYPE            SHA256
+USE_HMAC                    Y
+EOF
+        chmod 0600 "$client_file"
     fi
+
+    if [ -e /etc/fwknop/fwknopd.conf ]; then
+        backup_file /etc/fwknop/fwknopd.conf
+        if grep -q '^PCAP_INTF' /etc/fwknop/fwknopd.conf; then
+            sed -i "s/^PCAP_INTF.*/PCAP_INTF                   $WAN_IF;/" /etc/fwknop/fwknopd.conf
+        else
+            printf '\nPCAP_INTF                   %s;\n' "$WAN_IF" >> /etc/fwknop/fwknopd.conf
+        fi
+    fi
+
+    touch /var/log/fwknopd.log
     systemctl enable fwknop-server
-    if ! grep -q 'CHANGE_ME' /etc/fwknop/access.conf; then
-        systemctl restart fwknop-server
-    else
-        log "fwknop installed, but /etc/fwknop/access.conf still contains CHANGE_ME keys; service not restarted"
-    fi
+    systemctl restart fwknop-server
+    log "fwknop server configured; client stanza saved to $client_file"
 }
 
 write_wireguard_placeholder() {
@@ -619,12 +767,14 @@ main() {
 
     log "WAN_IF=$WAN_IF WG_IF=$WG_IF ADMIN_CIDR=$ADMIN_CIDR SSH_PORT=$SSH_PORT INSTALL_USER=$INSTALL_USER"
     ensure_apt
+    prepare_log_files
+    write_postfix_abuse_controls
     install_ssh_key
     write_nftables
     write_fail2ban_helper
     write_fail2ban
     write_threat_updater
-    write_fwknop_placeholder
+    write_fwknop_config
     write_wireguard_placeholder
     harden_sshd
     final_checks
